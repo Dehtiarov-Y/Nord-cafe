@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nord Café — Fiche Produit & Panier Détaillés (Figma Ready)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Palette officielle Nord Café */
+      --color-olivewood: #210706;
+      --color-olivewood-dark: #150302;
+      --color-olivewood-surface: #2b0c0a;
+      --color-olivewood-card: #34100e;
+      --color-tuscan-red: #891D1A;
+      --color-tuscan-hover: #701614;
+      --color-tuscan-pressed: #55100e;
+      --color-slate-blue: #5E657B;
+      --color-slate-light: #838ba1;
+      --color-biscotti: #F1E6D2;
+      --color-biscotti-card: #f9f4ec;
+      --color-biscotti-muted: #d5c6b0;
+      --color-biscotti-dim: #948270;
+      
+      /* Lignes et séparateurs */
+      --border-subtle: rgba(241, 230, 210, 0.12);
+      --border-medium: rgba(241, 230, 210, 0.22);
+      --border-dark: rgba(33, 7, 6, 0.12);
+
+      /* Rayons de courbure */
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-pill: 9999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #0e0202;
+      color: var(--color-biscotti);
+      font-family: 'Archivo', -apple-system, sans-serif;
+      padding: 50px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 100px;
+      align-items: center;
+    }
+
+    .magilo, h1, h2, h3, h4, .serif {
+      font-family: 'Magilo', 'Playfair Display', Georgia, serif;
+      letter-spacing: -0.01em;
+    }
+
+    .archivo, p, span, label, input, button {
+      font-family: 'Archivo', sans-serif;
+    }
+
+    /* En-tête de section Figma */
+    .screen-header-banner {
+      width: 1440px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 2px solid var(--border-subtle);
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+    }
+
+    .screen-tag {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--color-slate-blue);
+      font-weight: 800;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .screen-title {
+      font-size: 34px;
+      color: var(--color-biscotti);
+    }
+
+    .screen-badge {
+      font-size: 13px;
+      background: rgba(94, 101, 123, 0.25);
+      border: 1px solid var(--color-slate-blue);
+      color: var(--color-biscotti);
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      font-weight: 700;
+    }
+
+    .screens-container {
+      display: flex;
+      gap: 50px;
+      align-items: flex-start;
+      overflow-x: auto;
+      max-width: 100%;
+      padding-bottom: 30px;
+    }
+
+    /* Cadre Desktop exact 1440px */
+    .desktop-1440 {
+      width: 1440px;
+      min-width: 1440px;
+      background: var(--color-olivewood);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 30px 90px rgba(0,0,0,0.85);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Cadre Mobile exact 390px */
+    .mobile-390 {
+      width: 390px;
+      min-width: 390px;
+      background: var(--color-olivewood);
+      border-radius: 42px;
+      border: 8px solid #140302;
+      box-shadow: 0 30px 90px rgba(0,0,0,0.85);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container-1200 {
+      width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Navigation Îlot / Nuage */
+    .nav-cloud-wrapper {
+      padding: 24px 0;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .nav-cloud {
+      background: var(--color-biscotti);
+      color: var(--color-olivewood);
+      padding: 10px 24px;
+      border-radius: var(--radius-pill);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 980px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+    }
+
+    .nav-brand {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--color-tuscan-red);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .nav-item {
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--color-olivewood);
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+
+    .nav-item.active {
+      background: var(--color-tuscan-red);
+      color: #FFFFFF;
+    }
+
+    .nav-cart-badge {
+      background: var(--color-olivewood);
+      color: var(--color-biscotti);
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* En-tête Mobile */
+    .mobile-header {
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--color-olivewood);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .burger-icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(241, 230, 210, 0.08);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    .burger-line {
+      width: 18px;
+      height: 2px;
+      background: var(--color-biscotti);
+      border-radius: 2px;
+    }
+
+    /* Boutons */
+    .btn {
+      padding: 14px 28px;
+      border-radius: var(--radius-pill);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-tuscan {
+      background-color: var(--color-tuscan-red);
+      color: #FFFFFF;
+    }
+    .btn-tuscan:hover {
+      background-color: var(--color-tuscan-hover);
+    }
+
+    .btn-biscotti {
+      background-color: var(--color-biscotti);
+      color: var(--color-olivewood);
+    }
+
+    /* Options / Sélecteurs Puces */
+    .chip-option {
+      padding: 10px 20px;
+      border-radius: var(--radius-pill);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .chip-active {
+      background: var(--color-tuscan-red);
+      color: #FFFFFF;
+      border-color: var(--color-tuscan-red);
+    }
+
+    .chip-inactive {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--color-biscotti);
+      border-color: var(--border-subtle);
+    }
+
+    /* Stepper quantité */
+    .stepper {
+      display: inline-flex;
+      align-items: center;
+      background: var(--color-biscotti);
+      border-radius: var(--radius-pill);
+      padding: 4px 8px;
+      color: var(--color-olivewood);
+      font-weight: 800;
+    }
+
+    .stepper-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      background: transparent;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--color-olivewood);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .stepper-value {
+      padding: 0 16px;
+      font-size: 15px;
+    }
+
+    /* Notes sensorielles & Badges */
+    .sensory-badge {
+      background: rgba(94, 101, 123, 0.2);
+      border: 1px solid var(--color-slate-blue);
+      color: var(--color-biscotti);
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      font-size: 12px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* =========================================================
+       FOOTER COMPACT & ÉPURÉ COMMUN
+       ========================================================= */
+    .footer-compact {
+      background-color: #140302;
+      border-top: 1px solid var(--border-subtle);
+      padding: 50px 0 30px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    .footer-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 26px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .footer-nav-compact {
+      display: flex;
+      gap: 26px;
+      align-items: center;
+    }
+
+    .footer-link-compact {
+      color: var(--color-biscotti-muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .footer-link-compact:hover {
+      color: var(--color-biscotti);
+    }
+
+    .footer-pill-input {
+      display: flex;
+      align-items: center;
+      background: rgba(241, 230, 210, 0.06);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-pill);
+      padding: 4px 6px 4px 16px;
+      gap: 8px;
+    }
+    .footer-pill-input input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--color-biscotti);
+      font-size: 13px;
+      width: 200px;
+    }
+    .footer-pill-input input::placeholder {
+      color: var(--color-biscotti-dim);
+    }
+
+    .footer-logo-center {
+      text-align: center;
+      padding: 16px 0 8px 0;
+    }
+
+    .brand-giant-compact {
+      font-size: 110px;
+      font-weight: 800;
+      color: var(--color-biscotti);
+      line-height: 0.85;
+      letter-spacing: -2px;
+      display: inline-block;
+      opacity: 0.95;
+    }
+
+    .footer-bottom-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--color-biscotti-dim);
+      padding-top: 20px;
+      border-top: 1px solid rgba(241, 230, 210, 0.06);
+    }
+
+    .pay-chip {
+      background: rgba(241, 230, 210, 0.08);
+      border: 1px solid var(--border-subtle);
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--color-biscotti-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =================================================================== -->
+  <!-- ÉCRAN 2 : FICHE PRODUIT DÉTAILLÉE (PRODUCT PAGE) — VERSION ÉPURÉE   -->
+  <!-- =================================================================== -->
+  <section style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+    
+    <div class="screen-header-banner">
+      <div>
+        <span class="screen-tag">Écran 02 / Catalogue & Fiche Détaillée</span>
+        <h2 class="screen-title magilo">Fiche Produit : Éthiopie Yirgacheffe Bio — Lot Bombe</h2>
+      </div>
+      <div class="screen-badge">Desktop (1440px) & Mobile (390px)</div>
+    </div>
+
+    <div class="screens-container">
+      
+      <!-- DESKTOP 1440PX (VERSION ÉPURÉE & PLUS COURTE) -->
+      <div class="desktop-1440">
+        
+        <!-- Navigation Îlot -->
+        <div class="nav-cloud-wrapper">
+          <nav class="nav-cloud">
+            <a href="#" class="nav-brand magilo">☕ NORD CAFÉ</a>
+            <div class="nav-links">
+              <a href="#" class="nav-item">Accueil</a>
+              <a href="#" class="nav-item">Terroirs</a>
+              <a href="#" class="nav-item active">Fiche Café</a>
+              <a href="#panier-anchor" class="nav-item">Panier</a>
+            </div>
+            <a href="#panier-anchor" class="nav-cart-badge">
+              <span>Panier</span>
+              <span style="background:var(--color-tuscan-red); color:#fff; border-radius:50%; width:20px; height:20px; display:inline-flex; align-items:center; justify-content:center; font-size:11px;">2</span>
+            </a>
+          </nav>
+        </div>
+
+        <!-- Fil d'Ariane Minimal -->
+        <div class="container-1200" style="padding: 10px 0 20px 0; font-size: 13px; color: var(--color-biscotti-dim); display: flex; gap: 8px;">
+          <span>Accueil</span> <span>/</span>
+          <span>Afrique de l'Est</span> <span>/</span>
+          <span>Éthiopie</span> <span>/</span>
+          <span style="color: var(--color-biscotti);">Yirgacheffe Lot Bombe</span>
+        </div>
+
+        <!-- 2.1 Hero Produit Compact (Galerie + Paramètres) -->
+        <div class="container-1200" style="padding-bottom: 50px; display: grid; grid-template-columns: 1fr 1.1fr; gap: 50px; align-items: center;">
+          
+          <!-- Colonne Gauche : Visuel & Vignettes simplifiées -->
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <div style="background: var(--color-biscotti-card); height: 430px; border-radius: var(--radius-lg); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; box-shadow: 0 16px 40px rgba(0,0,0,0.3); color: var(--color-olivewood); position: relative;">
+              <span style="position: absolute; top: 18px; left: 18px; background: var(--color-slate-blue); color: #fff; padding: 5px 12px; border-radius: var(--radius-pill); font-size: 11px; font-weight: 800;">
+                Score SCA 89.2
+              </span>
+              <span style="position: absolute; top: 18px; right: 18px; background: var(--color-biscotti); border: 1px solid var(--border-dark); padding: 5px 12px; border-radius: var(--radius-pill); font-size: 11px; font-weight: 800; color: var(--color-tuscan-red);">
+                Bio & Direct Trade
+              </span>
+              <span style="font-size: 88px;">☕</span>
+              <span style="font-size: 12px; font-weight: 700; color: #5a3c35;">Sachet sous valve zippé • Torréfié à Paris</span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+              <div style="background: var(--color-biscotti-card); height: 75px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 24px; border: 2px solid var(--color-tuscan-red); cursor: pointer;">☕</div>
+              <div style="background: var(--color-olivewood-surface); border: 1px solid var(--border-subtle); height: 75px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 24px; cursor: pointer;">🍒</div>
+              <div style="background: var(--color-olivewood-surface); border: 1px solid var(--border-subtle); height: 75px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 24px; cursor: pointer;">🫘</div>
+            </div>
+          </div>
+
+          <!-- Colonne Droite : Configuration & Achat -->
+          <div style="display: flex; flex-direction: column; gap: 18px;">
+            <div>
+              <span style="color: var(--color-slate-blue); font-weight: 800; text-transform: uppercase; font-size: 11px; letter-spacing: 1.5px;">
+                Microlot Rare • Sidama / Bensa (2 150m)
+              </span>
+              <h1 class="magilo" style="font-size: 36px; color: var(--color-biscotti); margin-top: 4px; line-height: 1.15;">
+                Éthiopie Yirgacheffe Bio — Lot Bombe
+              </h1>
+              <div style="font-size: 26px; font-weight: 800; color: var(--color-tuscan-red); margin-top: 4px;">
+                13,50 € <span style="font-size: 13px; color: var(--color-biscotti-muted); font-weight: 400;">/ sachet 250g</span>
+              </div>
+            </div>
+
+            <p style="color: var(--color-biscotti-muted); font-size: 14px; line-height: 1.6;">
+              Issu des pentes volcaniques de Bensa, ce lot d'exception présente une grande délicatesse florale. Récolté à pleine maturité et lavé à l'eau de source pour garantir une tasse limpide et vive.
+            </p>
+
+            <!-- Profil Aromatique -->
+            <div>
+              <label style="display: block; font-size: 12px; font-weight: 700; margin-bottom: 8px; color: var(--color-biscotti);">
+                Notes de dégustation clés :
+              </label>
+              <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                <span class="sensory-badge">🌸 Fleur de Jasmin</span>
+                <span class="sensory-badge">🍑 Pêche Blanche</span>
+                <span class="sensory-badge">🍋 Bergamote</span>
+                <span class="sensory-badge">🍯 Miel d'Acacia</span>
+              </div>
+            </div>
+
+            <!-- Choix Mouture -->
+            <div>
+              <label style="display: block; font-size: 12px; font-weight: 700; margin-bottom: 8px; color: var(--color-biscotti);">
+                Type de mouture :
+              </label>
+              <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                <div class="chip-option chip-active" style="padding: 8px 16px; font-size: 12px;">✓ Grains Entiers</div>
+                <div class="chip-option chip-inactive" style="padding: 8px 16px; font-size: 12px;">Espresso</div>
+                <div class="chip-option chip-inactive" style="padding: 8px 16px; font-size: 12px;">Filtre / V60</div>
+                <div class="chip-option chip-inactive" style="padding: 8px 16px; font-size: 12px;">Piston</div>
+              </div>
+            </div>
+
+            <!-- Choix Format -->
+            <div>
+              <label style="display: block; font-size: 12px; font-weight: 700; margin-bottom: 8px; color: var(--color-biscotti);">
+                Format :
+              </label>
+              <div style="display: flex; gap: 8px;">
+                <div class="chip-option chip-active" style="padding: 8px 16px; font-size: 12px;">250g</div>
+                <div class="chip-option chip-inactive" style="padding: 8px 16px; font-size: 12px;">1 kg (Éco -15%)</div>
+              </div>
+            </div>
+
+            <!-- Achat & CTA -->
+            <div style="display: flex; gap: 16px; align-items: center; padding-top: 8px; border-top: 1px solid var(--border-subtle);">
+              <div class="stepper">
+                <button class="stepper-btn">−</button>
+                <span class="stepper-value">1</span>
+                <button class="stepper-btn">+</button>
+              </div>
+
+              <button class="btn btn-tuscan" style="flex: 1; padding: 14px 28px; font-size: 14px;">
+                Ajouter au panier • 13,50 €
+              </button>
+            </div>
+            <span style="font-size: 11px; color: var(--color-slate-light);">
+              🚚 Expédié sous 24h • Torréfaction artisanale fraîche • Livraison offerte dès 35 €
+            </span>
+          </div>
+
+        </div>
+
+        <!-- 2.2 Protocole Barista & Terroir Synthétisés (Compact) -->
+        <div style="background: var(--color-olivewood-surface); border-top: 1px solid var(--border-subtle); padding: 40px 0;">
+          <div class="container-1200">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+              
+              <!-- Recette V60 en 3 chiffres -->
+              <div>
+                <span class="screen-tag">Paramètres Barista V60</span>
+                <h3 class="magilo" style="font-size: 24px; color: var(--color-biscotti); margin-bottom: 14px;">
+                  Conseils d'extraction recommandée
+                </h3>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; text-align: center;">
+                  <div style="background: var(--color-olivewood-card); padding: 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+                    <span style="font-size: 10px; text-transform: uppercase; color: var(--color-slate-blue); font-weight: 800; display: block;">Ratio</span>
+                    <strong style="font-size: 18px; color: var(--color-biscotti);">1 : 16</strong>
+                  </div>
+                  <div style="background: var(--color-olivewood-card); padding: 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+                    <span style="font-size: 10px; text-transform: uppercase; color: var(--color-slate-blue); font-weight: 800; display: block;">Température</span>
+                    <strong style="font-size: 18px; color: var(--color-biscotti);">93° C</strong>
+                  </div>
+                  <div style="background: var(--color-olivewood-card); padding: 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+                    <span style="font-size: 10px; text-transform: uppercase; color: var(--color-slate-blue); font-weight: 800; display: block;">Temps</span>
+                    <strong style="font-size: 18px; color: var(--color-biscotti);">2m45</strong>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Fiche Terroir Synthétique -->
+              <div style="background: var(--color-olivewood-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                <div>
+                  <span style="font-size: 11px; color: var(--color-slate-blue); font-weight: 800; text-transform: uppercase;">Origine & Ferme</span>
+                  <div style="font-size: 13px; font-weight: 700; color: var(--color-biscotti); margin-top: 2px;">Station Bombe, Sidama</div>
+                </div>
+                <div>
+                  <span style="font-size: 11px; color: var(--color-slate-blue); font-weight: 800; text-transform: uppercase;">Altitude</span>
+                  <div style="font-size: 13px; font-weight: 700; color: var(--color-biscotti); margin-top: 2px;">2 050 – 2 150 m</div>
+                </div>
+                <div>
+                  <span style="font-size: 11px; color: var(--color-slate-blue); font-weight: 800; text-transform: uppercase;">Variété Botanique</span>
+                  <div style="font-size: 13px; font-weight: 700; color: var(--color-biscotti); margin-top: 2px;">Heirloom 74112</div>
+                </div>
+                <div>
+                  <span style="font-size: 11px; color: var(--color-slate-blue); font-weight: 800; text-transform: uppercase;">Traitement</span>
+                  <div style="font-size: 13px; font-weight: 700; color: var(--color-biscotti); margin-top: 2px;">Lavé sur lits africains</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer Compact Monumental -->
+        <footer class="footer-compact">
+          <div class="container-1200 footer-top-row">
+            <div style="display:flex; align-items:center; gap:24px;">
+              <span style="font-size:14px; font-weight:700; color:var(--color-biscotti);">Le Club Newsletter :</span>
+              <div class="footer-pill-input">
+                <input type="email" placeholder="Votre email pour les cuppings..." aria-label="Email">
+                <button class="btn btn-tuscan" style="padding:8px 18px; font-size:12px;">S'inscrire</button>
+              </div>
+            </div>
+
+            <nav class="footer-nav-compact">
+              <a href="#" class="footer-link-compact">Cafés d'Origine</a>
+              <a href="#" class="footer-link-compact">Abonnement</a>
+              <a href="#" class="footer-link-compact">Guide Barista</a>
+              <a href="#" class="footer-link-compact">Nos Boutiques</a>
+              <a href="#" class="footer-link-compact">FAQ & Contact</a>
+            </nav>
+          </div>
+
+          <div class="footer-logo-center">
+            <div class="brand-giant-compact magilo">NORD CAFÉ</div>
+            <span style="display:block; font-size:11px; letter-spacing:6px; text-transform:uppercase; font-weight:800; color:var(--color-slate-blue); margin-top:8px;">
+              Torréfaction Artisanale & Cafés Rares
+            </span>
+          </div>
+
+          <div class="container-1200 footer-bottom-bar">
+            <div style="display:flex; gap:20px;">
+              <span>© 2026 Nord Café. Tous droits réservés.</span>
+              <a href="#" style="color:var(--color-biscotti-dim); text-decoration:none;">Mentions légales</a>
+              <a href="#" style="color:var(--color-biscotti-dim); text-decoration:none;">Données personnelles</a>
+              <a href="#" style="color:var(--color-biscotti-dim); text-decoration:none;">CGV</a>
+            </div>
+
+            <div style="display:flex; gap:8px; align-items:center;">
+              <span class="pay-chip">VISA</span>
+              <span class="pay-chip">Mastercard</span>
+              <span class="pay-chip">Apple Pay</span>
+              <span style="margin-left:10px; color:var(--color-biscotti-dim);">🇫🇷 EUR (€)</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+
+      <!-- MOBILE 390PX -->
+      <div class="mobile-390">
+        <header class="mobile-header">
+          <span class="magilo" style="font-size: 18px; color: var(--color-tuscan-red); font-weight: 800;">☕ NORD CAFÉ</span>
+          <div class="burger-icon-btn"><div class="burger-line"></div><div class="burger-line"></div></div>
+        </header>
+
+        <div style="padding: 20px; display: flex; flex-direction: column; gap: 16px;">
+          <div style="background: var(--color-biscotti-card); height: 230px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 60px; color: var(--color-olivewood); position: relative;">
+            <span style="position: absolute; top: 12px; left: 12px; background: var(--color-slate-blue); color: #fff; padding: 4px 10px; border-radius: var(--radius-pill); font-size: 10px; font-weight: 800;">
+              SCA 89.2
+            </span>
+            ☕ 250g
+          </div>
+
+          <div>
+            <span style="font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--color-slate-blue); font-weight: 800;">
+              Sidama • Bensa (2 150m)
+            </span>
+            <h2 class="magilo" style="font-size: 24px; color: var(--color-biscotti); margin-top: 4px;">Yirgacheffe Lot Bombe</h2>
+            <div class="magilo" style="font-size: 22px; font-weight: 800; color: var(--color-tuscan-red); margin-top: 4px;">13,50 €</div>
+          </div>
+
+          <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <span class="sensory-badge" style="font-size: 11px;">🌸 Jasmin</span>
+            <span class="sensory-badge" style="font-size: 11px;">🍑 Pêche</span>
+            <span class="sensory-badge" style="font-size: 11px;">🍋 Bergamote</span>
+          </div>
+
+          <div>
+            <span style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 6px;">Mouture :</span>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <span class="chip-option chip-active" style="padding: 6px 14px; font-size: 12px;">Grains</span>
+              <span class="chip-option chip-inactive" style="padding: 6px 14px; font-size: 12px;">Espresso</span>
+              <span class="chip-option chip-inactive" style="padding: 6px 14px; font-size: 12px;">V60</span>
+            </div>
+          </div>
+
+          <button class="btn btn-tuscan" style="width: 100%; padding: 14px;">
+            Ajouter au panier (13,50 €)
+          </button>
+
+          <div style="background: var(--color-olivewood-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 16px; margin-top: 6px;">
+            <span style="font-size: 11px; text-transform: uppercase; color: var(--color-slate-blue); font-weight: 800;">Recette V60 :</span>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px; text-align: center;">
+              <div><strong style="display:block; font-size: 14px;">1:16</strong><span style="font-size: 10px; color: var(--color-biscotti-dim);">Ratio</span></div>
+              <div><strong style="display:block; font-size: 14px;">93°C</strong><span style="font-size: 10px; color: var(--color-biscotti-dim);">Temp.</span></div>
+              <div><strong style="display:block; font-size: 14px;">2m45</strong><span style="font-size: 10px; color: var(--color-biscotti-dim);">Temps</span></div>
+            </div>
+          </div>
+        </div>
+
+        <footer style="background:#140302; padding:32px 20px 20px 20px; border-top:1px solid var(--border-subtle); display:flex; flex-direction:column; gap:16px; text-align:center; margin-top: 10px;">
+          <div>
+            <div class="magilo" style="font-size:44px; font-weight:800; color:var(--color-biscotti); line-height:0.9;">NORD CAFÉ</div>
+            <span style="font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--color-slate-blue); font-weight:800; display:block; margin-top:6px;">
+              TORRÉFACTION ARTISANALE
+            </span>
+          </div>
+          <div style="font-size:11px; color:var(--color-biscotti-dim);">
+            © 2026 Nord Café • Mentions Légales
+          </div>
+        </footer>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =================================================================== -->
+  <!-- ÉCRAN 3 : PANIER D'ACHAT & CHECKOUT (CART & SUMMARY)                -->
+  <!-- =================================================================== -->
+  <section style="width: 100%; display: flex; flex-direction: column; align-items: center;" id="panier-anchor">
+    
+    <div class="screen-header-banner">
+      <div>
+        <span class="screen-tag">Écran 03 / Parcours de Commande</span>
+        <h2 class="screen-title magilo">Panier d'Achat & Récapitulatif de Commande</h2>
+      </div>
+      <div class="screen-badge">Desktop (1440px) & Mobile (390px)</div>
+    </div>
+
+    <div class="screens-container">
+      
+      <!-- DESKTOP 1440PX -->
+      <div class="desktop-1440">
+        
+        <!-- Navigation Îlot -->
+        <div class="nav-cloud-wrapper">
+          <nav class="nav-cloud">
+            <a href="#" class="nav-brand magilo">☕ NORD CAFÉ</a>
+            <div class="nav-links">
+              <a href="#" class="nav-item">Accueil</a>
+              <a href="#" class="nav-item">Terroirs</a>
+              <a href="#" class="nav-item">Fiche Café</a>
+              <a href="#" class="nav-item active">Panier</a>
+            </div>
+            <a href="#" class="nav-cart-badge">
+              <span>Panier</span>
+              <span style="background:var(--color-tuscan-red); color:#fff; border-radius:50%; width:20px; height:20px; display:inline-flex; align-items:center; justify-content:center; font-size:11px;">2</span>
+            </a>
+          </nav>
+        </div>
+
+        <!-- 3.1 Stepper de commande -->
+        <div class="container-1200" style="padding: 20px 0 30px 0;">
+          <div style="display: flex; justify-content: center; gap: 40px; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 10px; color: var(--color-biscotti); font-weight: 700; font-size: 14px;">
+              <span style="background: var(--color-tuscan-red); color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px;">1</span>
+              <span>Mon Panier</span>
+            </div>
+            <div style="width: 60px; height: 2px; background: var(--border-medium);"></div>
+            <div style="display: flex; align-items: center; gap: 10px; color: var(--color-biscotti-dim); font-weight: 600; font-size: 14px;">
+              <span style="background: rgba(241, 230, 210, 0.1); width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px;">2</span>
+              <span>Livraison</span>
+            </div>
+            <div style="width: 60px; height: 2px; background: var(--border-medium);"></div>
+            <div style="display: flex; align-items: center; gap: 10px; color: var(--color-biscotti-dim); font-weight: 600; font-size: 14px;">
+              <span style="background: rgba(241, 230, 210, 0.1); width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px;">3</span>
+              <span>Paiement</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3.2 Layout Panier -->
+        <div class="container-1200" style="padding-bottom: 70px; display: grid; grid-template-columns: 1.8fr 1.2fr; gap: 50px; align-items: flex-start;">
+          
+          <!-- Colonne Gauche : Articles du Panier -->
+          <div style="display: flex; flex-direction: column; gap: 20px;">
+            
+            <div style="background: var(--color-olivewood-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 18px 24px;">
+              <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; margin-bottom: 8px;">
+                <span>🚚 Plus que <strong style="color: var(--color-biscotti);">10,60 €</strong> pour la livraison offerte !</span>
+                <span style="color: var(--color-slate-light);">Seuil : 35,00 €</span>
+              </div>
+              <div style="width: 100%; height: 6px; background: rgba(0,0,0,0.3); border-radius: 999px; overflow: hidden;">
+                <div style="width: 70%; height: 100%; background: var(--color-tuscan-red); border-radius: 999px;"></div>
+              </div>
+            </div>
+
+            <!-- Article 1 -->
+            <div style="background: var(--color-olivewood-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 22px; display: flex; justify-content: space-between; align-items: center;">
+              <div style="display: flex; gap: 20px; align-items: center;">
+                <div style="background: var(--color-biscotti-card); width: 70px; height: 70px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 32px; color: var(--color-olivewood);">
+                  ☕
+                </div>
+                <div>
+                  <h4 class="magilo" style="font-size: 18px; color: var(--color-biscotti);">Éthiopie Yirgacheffe Bio</h4>
+                  <div style="font-size: 12px; color: var(--color-slate-blue); margin-top: 2px;">
+                    Grains entiers • Paquet de 250g
+                  </div>
+                  <div style="font-size: 11px; color: var(--color-biscotti-dim); margin-top: 4px;">
+                    🔥 Torréfié le 24 Octobre 2026
+                  </div>
+                </div>
+              </div>
+
+              <div style="display: flex; align-items: center; gap: 24px;">
+                <div class="stepper">
+                  <button class="stepper-btn">−</button>
+                  <span class="stepper-value">1</span>
+                  <button class="stepper-btn">+</button>
+                </div>
+                <span class="magilo" style="font-size: 20px; font-weight: 800; color: var(--color-biscotti); min-width: 70px; text-align: right;">
+                  13,50 €
+                </span>
+                <button style="background: transparent; border: none; color: var(--color-biscotti-dim); cursor: pointer; font-size: 16px;">
+                  ✕
+                </button>
+              </div>
+            </div>
+
+            <!-- Article 2 -->
+            <div style="background: var(--color-olivewood-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 22px; display: flex; justify-content: space-between; align-items: center;">
+              <div style="display: flex; gap: 20px; align-items: center;">
+                <div style="background: var(--color-biscotti-card); width: 70px; height: 70px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 32px; color: var(--color-olivewood);">
+                  🫘
+                </div>
+                <div>
+                  <h4 class="magilo" style="font-size: 18px; color: var(--color-biscotti);">Colombie San Agustin</h4>
+                  <div style="font-size: 12px; color: var(--color-slate-blue); margin-top: 2px;">
+                    Mouture Espresso Fine • Paquet de 250g
+                  </div>
+                  <div style="font-size: 11px; color: var(--color-biscotti-dim); margin-top: 4px;">
+                    🔥 Torréfié le 22 Octobre 2026
+                  </div>
+                </div>
+              </div>
+
+              <div style="display: flex; align-items: center; gap: 24px;">
+                <div class="stepper">
+                  <button class="stepper-btn">−</button>
+                  <span class="stepper-value">1</span>
+                  <button class="stepper-btn">+</button>
+                </div>
+                <span class="magilo" style="font-size: 20px; font-weight: 800; color: var(--color-biscotti); min-width: 70px; text-align: right;">
+                  10,90 €
+                </span>
+                <button style="background: transparent; border: none; color: var(--color-biscotti-dim); cursor: pointer; font-size: 16px;">
+                  ✕
+                </button>
+              </div>
+            </div>
+
+            <!-- Option Cadeau -->
+            <div style="background: rgba(241, 230, 210, 0.04); border: 1px dashed var(--border-subtle); border-radius: var(--radius-md); padding: 18px; display: flex; justify-content: space-between; align-items: center; font-size: 13px;">
+              <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                <input type="checkbox" style="accent-color: var(--color-tuscan-red);">
+                <span>Ajouter un mot manuscrit gratuit pour un cadeau</span>
+              </label>
+              <span style="color: var(--color-slate-blue); font-weight: 700;">+ 0,00 €</span>
+            </div>
+
+          </div>
+
+          <!-- Colonne Droite : Récapitulatif & Checkout -->
+          <div style="display: flex; flex-direction: column; gap: 24px;">
+            <div style="background: var(--color-biscotti); color: var(--color-olivewood); padding: 36px; border-radius: var(--radius-lg); display: flex; flex-direction: column; gap: 20px; box-shadow: 0 16px 40px rgba(0,0,0,0.3);">
+              <h3 class="magilo" style="font-size: 26px;">Récapitulatif de Commande</h3>
+
+              <div style="display: flex; gap: 10px;">
+                <input type="text" placeholder="Code promo (ex: NORD10)" style="flex: 1; padding: 10px 16px; border: 1px solid var(--border-dark); border-radius: var(--radius-pill); font-size: 13px; outline: none; background: #fff;">
+                <button class="btn btn-tuscan" style="padding: 10px 20px; font-size: 12px;">Appliquer</button>
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 12px; font-size: 14px; border-top: 1px solid var(--border-dark); padding-top: 16px;">
+                <div style="display: flex; justify-content: space-between;">
+                  <span>Sous-total articles (2)</span>
+                  <strong>24,40 €</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span>Livraison Colissimo (48h)</span>
+                  <strong>4,90 €</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 12px; color: #5a3c35;">
+                  <span>Emballage isotherme compostable</span>
+                  <span>Offert</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 12px; color: #5a3c35;">
+                  <span>Dont TVA incluse (5.5%)</span>
+                  <span>1,43 €</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 22px; font-weight: 800; border-top: 2px solid var(--border-dark); padding-top: 14px;">
+                  <span>Total à régler</span>
+                  <span class="magilo" style="color: var(--color-tuscan-red);">29,30 €</span>
+                </div>
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 6px;">
+                <button class="btn btn-tuscan" style="width: 100%; padding: 16px; font-size: 14px;">
+                  Passer la commande
+                </button>
+                <button style="width: 100%; padding: 12px; border-radius: var(--radius-pill); background: #000; color: #fff; border: none; font-weight: 700; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                  <span>Payer avec</span> <strong style="font-size: 15px;">Pay</strong>
+                </button>
+              </div>
+
+              <div style="border-top: 1px solid var(--border-dark); padding-top: 14px; display: flex; flex-direction: column; gap: 8px; font-size: 12px; color: #49332d;">
+                <span>🔒 Paiement crypté SSL 256 bits</span>
+                <span>📦 Expédié sous sachet hermétique zippé</span>
+                <span>↩️ Retours faciles sous 14 jours</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Footer Compact Monumental -->
+        <footer class="footer-compact">
+          <div class="container-1200 footer-top-row">
+            <div style="display:flex; align-items:center; gap:24px;">
+              <span style="font-size:14px; font-weight:700; color:var(--color-biscotti);">Le Club Newsletter :</span>
+              <div class="footer-pill-input">
+                <input type="email" placeholder="Votre email pour les cuppings..." aria-label="Email">
+                <button class="btn btn-tuscan" style="padding:8px 18px; font-size:12px;">S'inscrire</button>
+              </div>
+            </div>
+
+            <nav class="footer-nav-compact">
+              <a href="#" class="footer-link-compact">Cafés d'Origine</a>
+              <a href="#" class="footer-link-compact">Abonnement</a>
+              <a href="#" class="footer-link-compact">Guide Barista</a>
+              <a href="#" class="footer-link-compact">Nos Boutiques</a>
+              <a href="#" class="footer-link-compact">FAQ & Contact</a>
+            </nav>
+          </div>
+
+          <div class="footer-logo-center">
+            <div class="brand-giant-compact magilo">NORD CAFÉ</div>
+            <span style="display:block; font-size:11px; letter-spacing:6px; text-transform:uppercase; font-weight:800; color:var(--color-slate-blue); margin-top:8px;">
+              Torréfaction Artisanale & Cafés Rares
+            </span>
+          </div>
+
+          <div class="container-1200 footer-bottom-bar">
+            <div style="display:flex; gap:20px;">
+              <span>© 2026 Nord Café. Tous droits réservés.</span>
+              <a href="#" style="color:var(--color-biscotti-dim); text-decoration:none;">Mentions légales</a>
+              <a href="#" style="color:var(--color-biscotti-dim); text-decoration:none;">Données personnelles</a>
+              <a href="#" style="color:var(--color-biscotti-dim); text-decoration:none;">CGV</a>
+            </div>
+
+            <div style="display:flex; gap:8px; align-items:center;">
+              <span class="pay-chip">VISA</span>
+              <span class="pay-chip">Mastercard</span>
+              <span class="pay-chip">Apple Pay</span>
+              <span style="margin-left:10px; color:var(--color-biscotti-dim);">🇫🇷 EUR (€)</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+
+      <!-- MOBILE 390PX -->
+      <div class="mobile-390">
+        <header class="mobile-header">
+          <span class="magilo" style="font-size: 18px; color: var(--color-tuscan-red); font-weight: 800;">☕ NORD CAFÉ</span>
+          <span style="font-size: 13px; font-weight: 700;">Fermer ✕</span>
+        </header>
+
+        <div style="padding: 20px; display: flex; flex-direction: column; gap: 16px;">
+          <h2 class="magilo" style="font-size: 24px; color: var(--color-biscotti);">Mon Panier (2)</h2>
+
+          <div style="background: var(--color-olivewood-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 12px;">
+            <div style="font-size: 11px; font-weight: 700; margin-bottom: 6px;">
+              Plus que 10,60 € pour la livraison offerte
+            </div>
+            <div style="width: 100%; height: 4px; background: rgba(0,0,0,0.3); border-radius: 999px;">
+              <div style="width: 70%; height: 100%; background: var(--color-tuscan-red);"></div>
+            </div>
+          </div>
+
+          <div style="background: var(--color-olivewood-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 14px; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <h4 class="magilo" style="font-size: 14px;">Yirgacheffe Bio</h4>
+              <span style="font-size: 11px; color: var(--color-slate-blue);">Grains • 250g</span>
+            </div>
+            <div style="text-align: right;">
+              <strong style="font-size: 14px;">13,50 €</strong>
+              <div style="font-size: 11px; color: var(--color-biscotti-dim);">Qté: 1</div>
+            </div>
+          </div>
+
+          <div style="background: var(--color-olivewood-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 14px; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <h4 class="magilo" style="font-size: 14px;">Colombie San Agustin</h4>
+              <span style="font-size: 11px; color: var(--color-slate-blue);">Espresso • 250g</span>
+            </div>
+            <div style="text-align: right;">
+              <strong style="font-size: 14px;">10,90 €</strong>
+              <div style="font-size: 11px; color: var(--color-biscotti-dim);">Qté: 1</div>
+            </div>
+          </div>
+
+          <div style="background: var(--color-biscotti); color: var(--color-olivewood); padding: 20px; border-radius: var(--radius-md); margin-top: 10px; display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; justify-content: space-between; font-size: 13px;">
+              <span>Sous-total :</span>
+              <strong>24,40 €</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 13px;">
+              <span>Livraison 48h :</span>
+              <strong>4,90 €</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 18px; font-weight: 800; border-top: 1px solid var(--border-dark); padding-top: 10px;">
+              <span>Total TTC :</span>
+              <span class="magilo" style="color: var(--color-tuscan-red);">29,30 €</span>
+            </div>
+            <button class="btn btn-tuscan" style="width: 100%; padding: 14px; margin-top: 6px;">
+              Commander (29,30 €)
+            </button>
+          </div>
+        </div>
+
+        <footer style="background:#140302; padding:36px 20px 24px 20px; border-top:1px solid var(--border-subtle); display:flex; flex-direction:column; gap:20px; text-align:center; margin-top: 20px;">
+          <div>
+            <div class="magilo" style="font-size:48px; font-weight:800; color:var(--color-biscotti); line-height:0.9;">NORD CAFÉ</div>
+            <span style="font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--color-slate-blue); font-weight:800; display:block; margin-top:6px;">
+              TORRÉFACTION ARTISANALE
+            </span>
+          </div>
+          <div style="font-size:11px; color:var(--color-biscotti-dim);">
+            © 2026 Nord Café • Mentions Légales • CGV
+          </div>
+        </footer>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>
